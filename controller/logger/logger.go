@@ -5,12 +5,18 @@ import (
 	"io"
 	"os"
 
+	absPathFinder "github.com/logger/controller/abspath"
 	log "github.com/sirupsen/logrus"
 )
 
 func InitializeLogging() {
 
-	logFile := "./test.log"
+	
+	curPath := absPathFinder.GetCurrentAbPath()
+
+	
+	logFile := curPath + "/test2.log"
+	log.Info(logFile)
 	var file, err = os.OpenFile(logFile, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if err != nil {
 	   fmt.Println("Could Not Open Log File : " + err.Error())
